@@ -31,8 +31,8 @@
     <string name="e_fb">E/Fb</string>
     <string name="e_fb_off">E/Fb</string>
     <string name="b_toggle">B_toggle</string>
-    <string name="b">B</string>
-    <string name="b_off">B</string>
+    <string name="b">B/Cb</string>
+    <string name="b_off">B/Cb</string>
     <string name="a_toggle">A_toggle</string>
     <string name="a">A</string>
     <string name="a_off">A</string>

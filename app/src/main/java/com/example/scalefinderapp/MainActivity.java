@@ -7,7 +7,10 @@ import android.widget.ToggleButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private ToggleButton aToggle;
     private ToggleButton aSharpToggle;
     private ToggleButton bToggle;
-
+    private HashMap<String, String[]> scales;
+    private ArrayList<String> selectedNotes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,56 +47,54 @@ public class MainActivity extends AppCompatActivity {
         aSharpToggle = findViewById(R.id.Asharp_Bflat_toggle);
         bToggle = findViewById(R.id.B_toggle);
 
-
-
-        ArrayList<String> selectedNotes = new ArrayList<>();
-        HashMap<String, String[]> scales = new HashMap<>();
+        selectedNotes = new ArrayList<>();
+        scales = new HashMap<>();
 
         /*
         add scales to hashMap
-
-        fksjlfkjsldkfjslkdfjlskdjfsdf
          major scales
         */
-        scales.put("C maj", new String[] {"C", "D", "E", "F", "G", "A", "B"});
-        scales.put("C# maj", new String[]{"C#", "D#", "E#", "F#", "G#", "A#", "B#"});
-        scales.put("D maj", new String[]{"D", "E", "F#", "G", "A", "B", "C#"});
-        scales.put("Eb maj", new String[]{"Eb", "F", "G", "Ab", "Bb", "C"});
-        scales.put("E maj", new String[]{"E", "F#", "G#", "A", "B", "C#", "D#"});
-        scales.put("F# major", new String[]{"F#", "G#", "A#", "B", "C#", "D#", "E#"});
-        scales.put("G major", new String[]{"G", "A", "B", "C", "D", "E", "F#"});
-        scales.put("Ab major", new String[]{"Ab", "Bb", "C", "Db", "Eb", "F", "G"});
-        scales.put("A major", new String[]{"A", "B", "C#", "D", "E", "F#", "G#"});
-        scales.put("Bb major", new String[]{"Bb", "C", "D", "Eb", "F", "G", "A"});
-        scales.put("B major", new String[]{"B", "C#", "D#", "E", "F#", "G#", "A#"});
+
+        scales.put("C maj", new String[] {"C", "D", "E", "F", "G", "A", "B", "B#", "Fb", "E#", "Cb"});
+        scales.put("C# maj", new String[]{"C#", "D#", "E#", "F#", "G#", "A#", "B#", "C", "F"});
+        scales.put("D maj", new String[]{"D", "E", "F#", "G", "A", "B", "C#", "Fb", "Cb"});
+        scales.put("Eb maj", new String[]{"Eb", "F", "G", "Ab", "Bb", "C", "B#"});
+        scales.put("E maj", new String[]{"E", "F#", "G#", "A", "B", "C#", "D#", "Fb", "Cb"});
+        scales.put("F# major", new String[]{"F#", "G#", "A#", "B", "C#", "D#", "E#", "F", "Cb"});
+        scales.put("G major", new String[]{"G", "A", "B", "C", "D", "E", "F#", "B#", "Fb", "Cb"});
+        scales.put("Ab major", new String[]{"Ab", "Bb", "C", "Db", "Eb", "F", "G", "B#", "E#"});
+        scales.put("A major", new String[]{"A", "B", "C#", "D", "E", "F#", "G#", "Fb", "Cb"});
+        scales.put("Bb major", new String[]{"Bb", "C", "D", "Eb", "F", "G", "A", "B#", "E#"});
+        scales.put("B major", new String[]{"B", "C#", "D#", "E", "F#", "G#", "A#", "Fb"});
 
         /* natural minor */
-        scales.put("C minor", new String[]{"C", "D", "Eb", "F", "G", "Ab", "Bb"});
-        scales.put("D minor", new String[]{"D", "E", "F", "G", "A", "Bb", "C"});
-        scales.put("E minor", new String[]{"E", "F#", "G", "A", "B", "C", "D"});
-        scales.put("F minor", new String[]{"F", "G", "Ab", "Bb", "C", "Db", "Eb"});
-        scales.put("G minor", new String[]{"G", "A", "Bb", "C", "D", "Eb", "F"});
-        scales.put("A minor", new String[]{"A", "B", "C", "D", "E", "F", "G"});
-        scales.put("B minor", new String[]{"B", "C#", "D", "E", "F#", "G", "A"});
-        scales.put("C# minor", new String[]{"C#", "D#", "E", "F#", "G#", "A", "B"});
-        scales.put("Eb minor", new String[]{"Eb", "F", "Gb", "Ab", "Bb", "Cb", "Db"});
-        scales.put("F# minor", new String[]{"F#", "G#", "A", "B", "C#", "D", "E"});
-        scales.put("Ab minor", new String[]{"Ab", "Bb", "Cb", "Db", "Eb", "Fb", "Gb"});
-        scales.put("Bb minor", new String[]{"Bb", "C", "Db", "Eb", "F", "Gb", "Ab"});
 
+        scales.put("C minor", new String[]{"C", "D", "Eb", "F", "G", "Ab", "Bb", "B#", "E#"});
+        scales.put("D minor", new String[]{"D", "E", "F", "G", "A", "Bb", "C", "B#", "Fb", "E#"});
+        scales.put("E minor", new String[]{"E", "F#", "G", "A", "B", "C", "D", "B#", "Fb", "Cb"});
+        scales.put("F minor", new String[]{"F", "G", "Ab", "Bb", "C", "Db", "Eb", "B#", "E#"});
+        scales.put("G minor", new String[]{"G", "A", "Bb", "C", "D", "Eb", "F", "B#", "E#"});
+        scales.put("A minor", new String[]{"A", "B", "C", "D", "E", "F", "G", "B#", "Fb", "E#", "Cb"});
+        scales.put("B minor", new String[]{"B", "C#", "D", "E", "F#", "G", "A", "Fb", "Cb"});
+        scales.put("C# minor", new String[]{"C#", "D#", "E", "F#", "G#", "A", "B", "Cb"});
+        scales.put("Eb minor", new String[]{"Eb", "F", "Gb", "Ab", "Bb", "Cb", "Db", "E#", "B"});
+        scales.put("F# minor", new String[]{"F#", "G#", "A", "B", "C#", "D", "E", "Fb", "Cb"});
+        scales.put("Ab minor", new String[]{"Ab", "Bb", "Cb", "Db", "Eb", "Fb", "Gb", "E", "B"});
+        scales.put("Bb minor", new String[]{"Bb", "C", "Db", "Eb", "F", "Gb", "Ab", "E#", "B#"});
 
-        /* setting on click listeners for toggle buttons */
+        /* setting on click listeners
+         for toggle buttons */
 
         cToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 selectedNotes.add("C");
-                selectedNotes.add("Bb");
-                Log.d("check selected notes", "onCreate: " + selectedNotes.toString());
+                selectedNotes.add("B#");
+                checkScales();
             } else {
                 if (selectedNotes.contains("C")){
                     selectedNotes.remove("C");
-                    selectedNotes.remove("Bb");
-                    Log.d("check selected notes", "onCreate: " + selectedNotes.toString());
+                    selectedNotes.remove("B#");
+                    checkScales();
                 }
             }
         });
@@ -101,13 +103,13 @@ public class MainActivity extends AppCompatActivity {
             if (isChecked){
                 selectedNotes.add("C#");
                 selectedNotes.add("Db");
-                Log.d("check selected notes", "onCreate: " + selectedNotes.toString());
+                checkScales();
             }
             else{
                 if (selectedNotes.contains("C#")){
                     selectedNotes.remove("C#");
                     selectedNotes.remove("Db");
-                    Log.d("check selected notes", "onCreate: " + selectedNotes.toString());
+                    checkScales();
                 }
             }
         });
@@ -115,12 +117,12 @@ public class MainActivity extends AppCompatActivity {
         dToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked){
                 selectedNotes.add("D");
-                Log.d("check selected notes", "onCreate: " + selectedNotes.toString());
+                checkScales();
             }
             else{
                 if (selectedNotes.contains("D")){
                     selectedNotes.remove("D");
-                    Log.d("check selected notes", "onCreate: " + selectedNotes.toString());
+                    checkScales();
                 }
             }
         });
@@ -129,13 +131,13 @@ public class MainActivity extends AppCompatActivity {
             if (isChecked){
                 selectedNotes.add("D#");
                 selectedNotes.add("Eb");
-                Log.d("check selected notes", "onCreate: " + selectedNotes.toString());
+                checkScales();
             }
             else{
                 if (selectedNotes.contains("D#")){
                     selectedNotes.remove("D#");
                     selectedNotes.remove("Eb");
-                    Log.d("check selected notes", "onCreate: " + selectedNotes.toString());
+                    checkScales();
                 }
             }
         });
@@ -144,17 +146,137 @@ public class MainActivity extends AppCompatActivity {
             if (isChecked){
                 selectedNotes.add("E");
                 selectedNotes.add("Fb");
-                Log.d("check selected notes", "onCreate: " + selectedNotes.toString());
+                checkScales();
             }
             else{
                 if (selectedNotes.contains("E")){
                     selectedNotes.remove("E");
                     selectedNotes.remove("Fb");
-                    Log.d("check selected notes", "onCreate: " + selectedNotes.toString());
+                    checkScales();
                 }
             }
         });
 
+        fToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                selectedNotes.add("F");
+                selectedNotes.add("E#");
+                checkScales();
+            }
+            else{
+                if (selectedNotes.contains("F")){
+                    selectedNotes.remove("F");
+                    selectedNotes.remove("E#");
+                    checkScales();
+                }
+            }
+        });
+
+        fSharpToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                selectedNotes.add("F#");
+                selectedNotes.add("Gb");
+                checkScales();
+            }
+            else{
+                if (selectedNotes.contains("F#")){
+                    selectedNotes.remove("F#");
+                    selectedNotes.remove("Gb");
+                    checkScales();
+                }
+            }
+        });
+
+        gToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                selectedNotes.add("G");
+                checkScales();
+            }
+            else{
+                if (selectedNotes.contains("G")){
+                    selectedNotes.remove("G");
+                    checkScales();
+                }
+            }
+        });
+
+        gSharpToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                selectedNotes.add("G#");
+                selectedNotes.add("Ab");
+                checkScales();
+            }
+            else{
+                if (selectedNotes.contains("G#")){
+                    selectedNotes.remove("G#");
+                    selectedNotes.remove("Ab");
+                    checkScales();
+                }
+            }
+        });
+
+        aToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                selectedNotes.add("A");
+                checkScales();
+            }
+            else{
+                if (selectedNotes.contains("A")){
+                    selectedNotes.remove("A");
+                    checkScales();
+                }
+            }
+        });
+
+        aSharpToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                selectedNotes.add("A#");
+                selectedNotes.add("Bb");
+                checkScales();
+            }
+            else{
+                if (selectedNotes.contains("A#")){
+                    selectedNotes.remove("A#");
+                    selectedNotes.remove("Bb");
+                    checkScales();
+                }
+            }
+        });
+
+        bToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                selectedNotes.add("B");
+                selectedNotes.add("Cb");
+                checkScales();
+            }
+            else{
+                if (selectedNotes.contains("B")){
+                    selectedNotes.remove("B");
+                    selectedNotes.remove("Cb");
+                    checkScales();
+                }
+            }
+        });
+
+
     }
 
+    /* method to check if selected notes are ina scale and log scales */
+
+    private void checkScales(){
+        Log.d("id", String.valueOf(selectedNotes));
+        ArrayList<String> returnedScales = new ArrayList<>();
+        boolean containedInScale = false;
+        for (Map.Entry<String, String[]> entry : scales.entrySet()) {
+            String key = entry.getKey();
+            String[] values = entry.getValue();
+            List<String> valuesArrayList = Arrays.asList(values);
+            //Log.d("id", "vales: " + valuesArrayList.toString());
+            if (valuesArrayList.containsAll(selectedNotes)){
+                Log.d("id", "checkScales: " + key);
+            }
+        }
+        Log.d("id", "------------------------------");
+
+    }
 }

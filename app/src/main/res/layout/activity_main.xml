@@ -154,6 +154,7 @@
         android:text="@string/b_toggle"
         android:textOff="@string/b"
         android:textOn="@string/b"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
