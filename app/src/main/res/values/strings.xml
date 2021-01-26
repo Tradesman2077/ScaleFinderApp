@@ -36,6 +36,6 @@
     <string name="a_toggle">A_toggle</string>
     <string name="a">A</string>
     <string name="a_off">A</string>
-    <string name="card_text">Filter scales by pressing the keys</string>
+    <string name="card_text">Filter scales by pressing the keys \n Press on a returned scale to view </string>
     <string name="blank"> </string>
 </resources>

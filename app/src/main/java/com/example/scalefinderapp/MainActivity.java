@@ -1,9 +1,19 @@
 package com.example.scalefinderapp;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private HashMap<String, String[]> scales;
     private ArrayList<String> selectedNotes;
     private TextView scaleText;
+    private ScrollView scrollView;
+    private LinearLayout scalesLayout;
 
 
     private final String SCALETEXTVIEW = "Scales containing selected notes will be displayed below";
@@ -51,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
         aSharpToggle = findViewById(R.id.Asharp_Bflat_toggle);
         bToggle = findViewById(R.id.B_toggle);
         scaleText = findViewById(R.id.scaleViewText);
+        scrollView = findViewById(R.id.scrollView);
+        scalesLayout = findViewById(R.id.scalesLayout);
+
 
         selectedNotes = new ArrayList<>();
         scales = new HashMap<>();
@@ -253,26 +268,102 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /* method to check if selected notes are ina scale and log scales */
+    /* method to check if selected notes are ina scale and log scales then add textview to scrollview */
 
     private void checkScales(){
+        scalesLayout.removeAllViews();
         ArrayList<String> returnedScales = new ArrayList<>();
         boolean containedInScale = false;
         for (Map.Entry<String, String[]> entry : scales.entrySet()) {
             String key = entry.getKey();
             String[] values = entry.getValue();
             List<String> valuesArrayList = Arrays.asList(values);
-
             if (valuesArrayList.containsAll(selectedNotes)){
                 returnedScales.add(key);
             }
         }
-        StringBuilder returnString = new StringBuilder();
         for (String scale : returnedScales){
-            returnString.append(scale).append("\n");
+            TextView newTextView = new TextView(this);
+            newTextView.setText(scale);
+            newTextView.setTextSize(18);
+            newTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            newTextView.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+
+                    String [] clickedScale = scales.get(scale);
+                    for (String note : clickedScale){
+                        switch (note){
+                            case "C":
+                                if (!cToggle.isChecked()){
+                                    cToggle.setChecked(true);
+                                }
+                                break;
+                            case "C#":
+                                if (!cSharpToggle.isChecked()){
+                                    cSharpToggle.setChecked(true);
+                                }
+                                break;
+                            case "D":
+                                if (!dToggle.isChecked()){
+                                    dToggle.setChecked(true);
+                                }
+                                break;
+                            case "D#":
+                                if (!dSharpToggle.isChecked()){
+                                    dSharpToggle.setChecked(true);
+                                }
+                                break;
+                            case "E":
+                                if (!eToggle.isChecked()){
+                                    eToggle.setChecked(true);
+                                }
+                                break;
+                            case "E#":
+                                if (!fToggle.isChecked()){
+                                    fToggle.setChecked(true);
+                                }
+                                break;
+                            case "F#":
+                                if (!fSharpToggle.isChecked()){
+                                    fSharpToggle.setChecked(true);
+                                }
+                                break;
+                            case "G":
+                                if (!gToggle.isChecked()){
+                                    gToggle.setChecked(true);
+                                }
+                                break;
+                            case "G#":
+                                if (!gSharpToggle.isChecked()){
+                                    gSharpToggle.setChecked(true);
+                                }
+                                break;
+                            case "A":
+                                if (!aToggle.isChecked()){
+                                    aToggle.setChecked(true);
+                                }
+                                break;
+                            case "A#":
+                                if (!aSharpToggle.isChecked()){
+                                    aSharpToggle.setChecked(true);
+                                }
+                                break;
+                            case "B":
+                                if (!bToggle.isChecked()){
+                                    bToggle.setChecked(true);
+                                }
+                                break;
+                            default:
+                                //do nothing
+                        }
+                    }
+
+                }
+            });
+            scalesLayout.addView(newTextView);
         }
-        scaleText.setText(returnString.toString());
-        //Log.d("id", "------------------------------");
-        //Log.d("id", returnedScales.toString());
     }
 }
