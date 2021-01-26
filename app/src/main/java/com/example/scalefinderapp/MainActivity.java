@@ -292,7 +292,6 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v)
                 {
-
                     String [] clickedScale = scales.get(scale);
                     for (String note : clickedScale){
                         switch (note){
@@ -360,7 +359,6 @@ public class MainActivity extends AppCompatActivity {
                                 //do nothing
                         }
                     }
-
                 }
             });
             scalesLayout.addView(newTextView);
